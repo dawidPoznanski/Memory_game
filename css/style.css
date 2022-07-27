@@ -1,3 +1,24 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #c0c0c0;
+}
 
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzdHlsZS5jc3MifQ== */
+h1 {
+  font-family: "Coda", cursive;
+  color: #fff;
+  font-size: 3rem;
+  padding: 2rem;
+  text-shadow: 0 0 4px #000;
+}
+
+/*# sourceMappingURL=style.css.map */

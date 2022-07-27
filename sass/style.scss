@@ -1,0 +1,22 @@
+$main-font: 'Coda', cursive;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #c0c0c0;
+}
+h1 {
+  font-family: $main-font;
+  color: #fff;
+  font-size: 3rem;
+  padding: 2rem;
+  text-shadow: 0 0 4px #000;
+}
