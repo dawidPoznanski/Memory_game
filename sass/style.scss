@@ -21,3 +21,9 @@ h1 {
   padding: 2rem;
   text-shadow: 0 0 4px #000;
 }
+.grid {
+  width: 400px;
+  height: 300px;
+  display: flex;
+  flex-wrap: wrap;
+}
