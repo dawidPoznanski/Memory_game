@@ -27,3 +27,11 @@ h1 {
   display: flex;
   flex-wrap: wrap;
 }
+h3,
+.span {
+  font-family: $main-font;
+  color: #fff;
+  font-size: 2rem;
+  padding: 2rem;
+  text-shadow: 0 0 4px #000;
+}

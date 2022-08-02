@@ -97,7 +97,7 @@ function checkMatch() {
   result.textContent = cardsCollected.length;
 
   if (cardsCollected.length === cardArray.length / 2) {
-    result.textContent = 'Congratulations you fontd them all!';
+    result.textContent = 'Congratulations you fonund them all!';
   }
 }
 
