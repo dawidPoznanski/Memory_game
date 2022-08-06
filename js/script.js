@@ -51,6 +51,7 @@ const cardArray = [
 
 const grid = document.querySelector('.grid');
 const result = document.querySelector('#result');
+const clock = document.querySelector('#time');
 let cardsChosen = [];
 let cardsChosenIds = [];
 let cardsCollected = [];
@@ -77,9 +78,9 @@ function checkMatch() {
   if (optionOneId == optionTwoId) {
     cards[optionOneId].setAttribute('src', 'images/blank.png');
     cards[optionTwoId].setAttribute('src', 'images/blank.png');
-    alert('You have clicked the same image!');
+    // alert('You have clicked the same image!');
   } else if (cardsChosen[0] == cardsChosen[1]) {
-    alert('You found a match!');
+    // alert('You found a match!');
     cards[optionOneId].setAttribute('src', 'images/white.png');
     cards[optionTwoId].setAttribute('src', 'images/white.png');
     cards[optionOneId].removeEventListener('click', flipCard);
@@ -89,7 +90,7 @@ function checkMatch() {
   } else {
     cards[optionOneId].setAttribute('src', 'images/blank.png');
     cards[optionTwoId].setAttribute('src', 'images/blank.png');
-    alert('Sorry try again');
+    // alert('Sorry try again');
   }
 
   cardsChosen = [];
@@ -113,3 +114,25 @@ function flipCard() {
     setTimeout(checkMatch, 500);
   }
 }
+
+clock.textContent = '00:00';
+
+grid.addEventListener('click', counter, { once: true });
+
+console.log(cardsChosen);
+
+function counter() {
+  let num = 0;
+  setInterval(function () {
+    num++;
+    clock.textContent = `${num}`;
+  }, 1000);
+}
+
+const modal = document.querySelector('.modal');
+const btnStart = document.querySelector('#start');
+
+btnStart.addEventListener('click', function (e) {
+  e.preventDefault();
+  modal.classList.toggle('hidden');
+});
