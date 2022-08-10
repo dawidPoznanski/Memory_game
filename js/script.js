@@ -52,6 +52,7 @@ const cardArray = [
 const grid = document.querySelector('.grid');
 const result = document.querySelector('#result');
 const clock = document.querySelector('#time');
+result.textContent = '0';
 let cardsChosen = [];
 let cardsChosenIds = [];
 let cardsCollected = [];
@@ -99,6 +100,7 @@ function checkMatch() {
 
   if (cardsCollected.length === cardArray.length / 2) {
     result.textContent = 'Congratulations you fonund them all!';
+    clearInterval();
   }
 }
 
@@ -121,11 +123,14 @@ grid.addEventListener('click', counter, { once: true });
 
 console.log(cardsChosen);
 
+let sec = 0;
+let min = 0;
 function counter() {
-  let num = 0;
   setInterval(function () {
-    num++;
-    clock.textContent = `${num}`;
+    sec++;
+    clock.textContent = `${min.toString().padStart(2, '0')}:${sec
+      .toString()
+      .padStart(2, '0')}`;
   }, 1000);
 }
 
@@ -135,4 +140,16 @@ const btnStart = document.querySelector('#start');
 btnStart.addEventListener('click', function (e) {
   e.preventDefault();
   modal.classList.toggle('hidden');
+});
+
+const btnRestart = document.querySelector('#reset');
+
+btnRestart.addEventListener('click', function (e) {
+  e.preventDefault();
+  clock.textContent = '00:00';
+  sec = 0;
+  min = 0;
+  cardsChosen = [];
+  cardsChosenIds = [];
+  cardsCollected = [];
 });
