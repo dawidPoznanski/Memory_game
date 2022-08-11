@@ -57,11 +57,9 @@ let cardsChosen = [];
 let cardsChosenIds = [];
 let cardsCollected = [];
 
-function shuffle() {
-  cardArray.sort(() => 0.5 - Math.random());
-}
+cardArray.sort(() => 0.5 - Math.random());
+// const card = document.createElement('img');
 // console.log(cardArray);
-
 function createBoard() {
   for (i = 0; i < cardArray.length; i++) {
     const card = document.createElement('img');
@@ -74,10 +72,9 @@ function createBoard() {
 createBoard();
 
 function checkMatch() {
-  const cards = document.querySelectorAll('img');
   const optionOneId = cardsChosenIds[0];
   const optionTwoId = cardsChosenIds[1];
-
+  const cards = document.querySelectorAll('img');
   if (optionOneId == optionTwoId) {
     cards[optionOneId].setAttribute('src', 'images/blank.png');
     cards[optionTwoId].setAttribute('src', 'images/blank.png');
@@ -102,6 +99,7 @@ function checkMatch() {
 
   if (cardsCollected.length === cardArray.length / 2) {
     result.textContent = 'Congratulations you fonund them all!';
+    stopTimer();
   }
 }
 
@@ -134,7 +132,6 @@ grid.addEventListener('click', () => {
 const clock = document.querySelector('#time');
 const btnStart = document.querySelector('#start');
 const btnRestart = document.querySelector('#reset');
-
 let counter = 0;
 let interval = null;
 clock.textContent = '00:00:00';
@@ -182,5 +179,6 @@ btnRestart.addEventListener('click', function (e) {
   cardsCollected = [];
   stopTimer();
   modal.classList.toggle('hidden');
-  shuffle();
+  grid.innerHTML = '';
+  createBoard();
 });

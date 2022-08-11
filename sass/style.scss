@@ -40,6 +40,12 @@ h1 {
   flex-direction: column;
 }
 
+.user-stats {
+  display: flex;
+  justify-content: space-between;
+  width: 23rem;
+}
+
 h3,
 .span {
   font-family: $main-font;
