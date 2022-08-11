@@ -51,13 +51,15 @@ const cardArray = [
 
 const grid = document.querySelector('.grid');
 const result = document.querySelector('#result');
-const clock = document.querySelector('#time');
+
 result.textContent = '0';
 let cardsChosen = [];
 let cardsChosenIds = [];
 let cardsCollected = [];
 
-cardArray.sort(() => 0.5 - Math.random());
+function shuffle() {
+  cardArray.sort(() => 0.5 - Math.random());
+}
 // console.log(cardArray);
 
 function createBoard() {
@@ -100,7 +102,6 @@ function checkMatch() {
 
   if (cardsCollected.length === cardArray.length / 2) {
     result.textContent = 'Congratulations you fonund them all!';
-    clearInterval();
   }
 }
 
@@ -117,39 +118,57 @@ function flipCard() {
   }
 }
 
-clock.textContent = '00:00';
-
-grid.addEventListener('click', counter, { once: true });
-
-console.log(cardsChosen);
-
-let sec = 0;
-let min = 0;
-function counter() {
-  setInterval(function () {
-    sec++;
-    clock.textContent = `${min.toString().padStart(2, '0')}:${sec
-      .toString()
-      .padStart(2, '0')}`;
-  }, 1000);
-}
-
 const modal = document.querySelector('.modal');
+
+// *Clock
+const clock = document.querySelector('#time');
 const btnStart = document.querySelector('#start');
+const btnRestart = document.querySelector('#reset');
+
+let counter = 0;
+let interval = null;
+clock.textContent = '00:00:00';
+//* timer function for updating clock
+timer = () => {
+  counter++;
+
+  let hrs = Math.floor(counter / 3600);
+  let min = Math.floor((counter - hrs * 60 * 60) / 60);
+  let sec = counter % 60;
+
+  clock.textContent = `${hrs.toString().padStart(2, '0')}:${min
+    .toString()
+    .padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+};
+
+startTimer = () => {
+  if (interval) {
+    return;
+  }
+
+  interval = setInterval(timer, 1000);
+};
+
+stopTimer = () => {
+  clearInterval(interval);
+  interval = null;
+};
 
 btnStart.addEventListener('click', function (e) {
   e.preventDefault();
   modal.classList.toggle('hidden');
+  startTimer();
 });
-
-const btnRestart = document.querySelector('#reset');
 
 btnRestart.addEventListener('click', function (e) {
   e.preventDefault();
-  clock.textContent = '00:00';
-  sec = 0;
-  min = 0;
+  clock.textContent = '00:00:00';
+  result.textContent = '0';
+  counter = 0;
   cardsChosen = [];
   cardsChosenIds = [];
   cardsCollected = [];
+  stopTimer();
+  modal.classList.toggle('hidden');
+  shuffle();
 });
