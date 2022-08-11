@@ -120,6 +120,16 @@ function flipCard() {
 
 const modal = document.querySelector('.modal');
 
+//* clicker
+const clickCounter = document.querySelector('#clicker');
+clickCounter.textContent = '0';
+let clicker = 0;
+
+grid.addEventListener('click', () => {
+  clicker++;
+  clickCounter.textContent = clicker.toString();
+});
+
 // *Clock
 const clock = document.querySelector('#time');
 const btnStart = document.querySelector('#start');
@@ -164,6 +174,8 @@ btnRestart.addEventListener('click', function (e) {
   e.preventDefault();
   clock.textContent = '00:00:00';
   result.textContent = '0';
+  clickCounter.textContent = '0';
+  clicker = 0;
   counter = 0;
   cardsChosen = [];
   cardsChosenIds = [];
